@@ -1,27 +1,13 @@
-require 'pry'
-
-cartArr = [
-{"AVOCADO" => {:price => 3.00, :clearance => true}},
-{"AVOCADO" => {:price => 3.00, :clearance => true}},
-{"AVOCADO" => {:price => 3.00, :clearance => true}},
-{"KALE" => {:price => 3.00, :clearance => false}},
-{"BLACK_BEANS" => {:price => 2.50, :clearance => false}},
-{"ALMONDS" => {:price => 9.00, :clearance => false}},]
-
-def consolidate_cart(cart)
-  cart_hash = {}
-
-  cart.each do |item_hash|
-    item_name = item_hash.keys[0]
-    item_attr = item_hash.values[0]
-    if cart_hash[item_name]
-      cart_hash[item_name][:count] += 1
-    else
-      item_attr[:count] = 1
-      cart_hash[item_name] = item_attr
-    end
-  end
-  return cart_hash
+def consolidate_cart(cart) 
+  new_cart = {} 
+  cart.each do |items_array| 
+    items_array.each do |item, attribute_hash| 
+      new_cart[item] ||= attribute_hash 
+      new_cart[item][:count] ? new_cart[item][:count] += 1 :   
+      new_cart[item][:count] = 1 
+  end 
+end 
+new_cart 
 end
 
 def apply_coupons(cart, coupons)
