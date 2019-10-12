@@ -31,6 +31,16 @@ end
   cart
 end
 
+def apply_clearance(cart) 
+  cart.each do |item, attribute_hash| 
+    if attribute_hash[:clearance] == true 
+      attribute_hash[:price] = (attribute_hash[:price] *
+      0.8).round(2) 
+    end 
+  end 
+cart 
+end
+
 # def apply_coupons(cart, coupons)
 #   coupons.each do |coupon|
 #     item_name = coupon[:item] # "AVOCADO"
